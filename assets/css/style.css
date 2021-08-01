@@ -1,7 +1,28 @@
-.text-center {
-    text-align: center;
+:root {
+    --dark-color: #251d65;
+    --light-color: #5098e6;
+    --medium-color: #3462bb;
+    --highlight-color: red;
+    --pale-color: #f8f4dc;
 }
 
-.li {
-    list-style: none;
+body {
+    background-color: var(--medium-color);
+    color: var(--pale-color);
+}
+
+.app-name {
+    font-family:fantasy;
+    color: var(--dark-color);
+    font-size: 1.5em;
+}
+
+.mppBtn {
+    background-color: var(--light-color);
+    color: var(--pale-color);
+}
+
+.mppBtn:focus {
+    background-color: var(--pale-color);
+    color: var(--medium-color);
 }
