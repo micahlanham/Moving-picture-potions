@@ -7,7 +7,12 @@ const movieAPIHost = "imdb8.p.rapidapi.com";
 // again, just trying to prevent typos
 const movieAPISearch = "https://imdb8.p.rapidapi.com/title/";
 
+const numMoviesToDisplay = 5;
+
 var movieGenres = []; // make this global so we only have to fill it once
+var moviesFound = []; // make this global to help use fewer API calls
+var moviesToDisplay = [];
+var movieDetails = []; // { title: "title", summary: "summary"}
 
 var submitButtonEl = document.querySelector("#submit-button");
 var genreDropDownEl = document.querySelector("#genre-list");
@@ -77,32 +82,63 @@ var getMovieGenres = function()
 */    
 }
 
-var getMoviesInGenre = function(genreChoice)
+// choose numMoviesToDisplay movies from the returns list
+var loadMoviesToDisplay = function()
+{
+    moviesToDisplay = [];
+    // eventually have this chose numMoviesToDisplay random movies. For now, just choose the first numMoviesToDisplay.
+    for (var i = 0; i < numMoviesToDisplay; i++)
+    {
+        // the info in moviesFound is in the format /title/tt3554046/ - we just need the tt with the numbers
+        var movieInfo = moviesFound[i];
+        var n = movieInfo.indexOf("tt");
+        var movieID = movieInfo.slice(n, movieInfo.length - 1); // subtract 1 - we don't want that final slash
+        moviesToDisplay.push(movieID);
+    }
+}
+
+// this function is used while testing the code
+// it loads the movies from localStorage so that we aren't using API calls up
+// while getting the UI to work.
+var loadMoviesFound = function()
+{
+    moviesFound = JSON.parse(localStorage.getItem("moviesFound"));
+    if (!moviesFound)
+    {
+        moviesFound = [];
+    }
+    loadMoviesToDisplay();
+}
+
+var getMovieData = async function(movieIDt)
+{
+    for (var i = 0; i < numMoviesToDisplay; i++)
+    {
+        movieID = moviesToDisplay[i];
+
+        // "https://imdb8.p.rapidapi.com/title/get-overview-details?tconst=tt0944947&currentCountry=US"    
+        var fetchStr = movieAPISearch + "get-overview-details?tconst=" + movieID + "&currentCountry=US";
+        var response = await fetch(fetchStr, {
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-key": movieAPIKey,
+                "x-rapidapi-host": movieAPIHost 
+            }
+        });
+
+        var tmd = await response.json();
+        var theMovieDetails = { title: tmd.title.title, summary: tmd.plotOutline.text };
+        movieDetails.push(theMovieDetails);
+        console.log(movieDetails);
+    }        
+    console.log(movieDetails);
+}
+
+var getMoviesInGenre = async function(genreChoice)
 {
     var fetchStr = movieAPISearch + "get-popular-movies-by-genre?genre=%2Fchart%2Fpopular%2Fgenre%2F";
     var n = genreChoice.lastIndexOf("/");
     fetchStr += genreChoice.slice(n+1, genreChoice.length);
-    console.log(fetchStr);
-/*
-
-    fetch("https://imdb8.p.rapidapi.com/title/get-popular-movies-by-genre?genre=%2Fchart%2Fpopular%2Fgenre%2Fadventure", {
-        "method": "GET",
-        "headers": {
-            "x-rapidapi-key": "42a3df40e8msh40b4f189b13b666p169e06jsnd088b0a8350d",
-            "x-rapidapi-host": "imdb8.p.rapidapi.com"
-        }
-    })
-    .then(response => {
-        console.log(response);
-    })
-    .catch(err => {
-        console.error(err);
-    });
-*/
-
-
-
-
     fetch(fetchStr, {
     	"method": "GET",
 	    "headers": {
@@ -114,8 +150,10 @@ var getMoviesInGenre = function(genreChoice)
 	    return response.json();
      })
     .then(response => {
-        console.log("we got the movies!");
-        console.log(response);
+        // use the info from response to fill the moviesFound array
+        moviesFound = response;
+        loadMoviesToDisplay(); // decide which movies from the returned list in moviesFound will be displayed
+        getMovieData();
     })
     .catch(err => {
         console.error(err);
@@ -127,7 +165,6 @@ var submitClickHandler = function(event)
 {
     // get the users choice from the genre drop down
     var genreChoice = genreDropDownEl.value;
-    console.log("the user chose value: ", genreChoice);
     getMoviesInGenre(genreChoice);
 }
 
