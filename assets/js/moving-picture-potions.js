@@ -9,9 +9,11 @@ const movieAPISearch = "https://imdb8.p.rapidapi.com/title/";
 
 var movieGenres = []; // make this global so we only have to fill it once
 
+var submitButtonEl = document.querySelector("#submit-button");
+var genreDropDownEl = document.querySelector("#genre-list");
+
 var fillGenreDropDown = function(theMovieGenres)
 {
-    var genreDropDownEl = document.querySelector("#genre-list");
     genreDropDownEl.name = "Genres";
  
     for (var i = 0; i < theMovieGenres.length; i++)
@@ -75,4 +77,62 @@ var getMovieGenres = function()
 */    
 }
 
+var getMoviesInGenre = function(genreChoice)
+{
+    var fetchStr = movieAPISearch + "get-popular-movies-by-genre?genre=%2Fchart%2Fpopular%2Fgenre%2F";
+    var n = genreChoice.lastIndexOf("/");
+    fetchStr += genreChoice.slice(n+1, genreChoice.length);
+    console.log(fetchStr);
+/*
+
+    fetch("https://imdb8.p.rapidapi.com/title/get-popular-movies-by-genre?genre=%2Fchart%2Fpopular%2Fgenre%2Fadventure", {
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-key": "42a3df40e8msh40b4f189b13b666p169e06jsnd088b0a8350d",
+            "x-rapidapi-host": "imdb8.p.rapidapi.com"
+        }
+    })
+    .then(response => {
+        console.log(response);
+    })
+    .catch(err => {
+        console.error(err);
+    });
+*/
+
+
+
+
+    fetch(fetchStr, {
+    	"method": "GET",
+	    "headers": {
+	    	"x-rapidapi-key": movieAPIKey,
+	    	"x-rapidapi-host": movieAPIHost 
+	    }
+    })
+    .then(response => {
+	    return response.json();
+     })
+    .then(response => {
+        console.log("we got the movies!");
+        console.log(response);
+    })
+    .catch(err => {
+        console.error(err);
+    });
+
+}
+
+var submitClickHandler = function(event)
+{
+    // get the users choice from the genre drop down
+    var genreChoice = genreDropDownEl.value;
+    console.log("the user chose value: ", genreChoice);
+    getMoviesInGenre(genreChoice);
+}
+
+submitButtonEl.addEventListener("click", submitClickHandler);
+
+
 getMovieGenres();
+
