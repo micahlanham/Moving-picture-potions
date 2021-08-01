@@ -17,6 +17,14 @@ body {
     font-size: 1.5em;
 }
 
+ul {
+    list-style-type: none;
+}
+
+#movies-container {
+    display: none;
+}
+
 .mppBtn {
     background-color: var(--light-color);
     color: var(--pale-color);
