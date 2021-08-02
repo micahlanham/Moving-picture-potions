@@ -16,6 +16,7 @@ var movieDetails = []; // { title: "title", summary: "summary"}
 
 var submitButtonEl = document.querySelector("#submit-button");
 var genreDropDownEl = document.querySelector("#genre-list");
+var moviesContainerEl = document.querySelector("#movies-container");
 
 var fillGenreDropDown = function(theMovieGenres)
 {
@@ -97,6 +98,26 @@ var loadMoviesToDisplay = function()
     }
 }
 
+// add the movies to the DOM
+var renderMovieData = function()
+{
+    moviesContainerEl.style.display = "block";
+
+    for (var child = 0, movieIndex=0; child < moviesContainerEl.children.length; child++)
+    {   
+        var className = moviesContainerEl.children[child].className;
+        if (className === "card-section")
+        {
+            var movieData = movieDetails[movieIndex];
+            movieIndex++;
+            moviesContainerEl.children[child].getElementsByTagName("h4")[0].textContent = movieData.title;
+            moviesContainerEl.children[child].getElementsByTagName("p")[0].textContent = movieData.summary;
+
+        }
+    }    
+}
+
+
 // this function is used while testing the code
 // it loads the movies from localStorage so that we aren't using API calls up
 // while getting the UI to work.
@@ -129,9 +150,10 @@ var getMovieData = async function(movieIDt)
         var tmd = await response.json();
         var theMovieDetails = { title: tmd.title.title, summary: tmd.plotOutline.text };
         movieDetails.push(theMovieDetails);
-        console.log(movieDetails);
+        // console.log(movieDetails);
     }        
-    console.log(movieDetails);
+    // console.log(movieDetails);
+    renderMovieData();
 }
 
 var getMoviesInGenre = async function(genreChoice)
