@@ -17,6 +17,7 @@ var movieDetails = []; // { title: "title", summary: "summary"}
 var submitButtonEl = document.querySelector("#submit-button");
 var genreDropDownEl = document.querySelector("#genre-list");
 var moviesContainerEl = document.querySelector("#movies-container");
+var buttonContainerEl = document.querySelector("#button-container");
 
 var fillGenreDropDown = function(theMovieGenres)
 {
@@ -102,6 +103,7 @@ var loadMoviesToDisplay = function()
 var renderMovieData = function()
 {
     moviesContainerEl.style.display = "block";
+    buttonContainerEl.style.display = "block";
 
     for (var child = 0, movieIndex=0; child < moviesContainerEl.children.length; child++)
     {   
@@ -121,18 +123,20 @@ var renderMovieData = function()
 // this function is used while testing the code
 // it loads the movies from localStorage so that we aren't using API calls up
 // while getting the UI to work.
-var loadMoviesFound = function()
-{
-    moviesFound = JSON.parse(localStorage.getItem("moviesFound"));
-    if (!moviesFound)
-    {
-        moviesFound = [];
-    }
-    loadMoviesToDisplay();
-}
+// var loadMoviesFound = function()
+// {
+//     moviesFound = JSON.parse(localStorage.getItem("moviesFound"));
+//     if (!moviesFound)
+//     {
+//         moviesFound = [];
+//     }
+//     loadMoviesToDisplay();
+// }
 
 var getMovieData = async function(movieIDt)
 {
+    movieDetails = [];
+
     for (var i = 0; i < numMoviesToDisplay; i++)
     {
         movieID = moviesToDisplay[i];
@@ -182,6 +186,8 @@ var getMoviesInGenre = async function(genreChoice)
     });
 
 }
+
+
 
 var submitClickHandler = function(event)
 {
