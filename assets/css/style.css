@@ -25,6 +25,10 @@ ul {
     display: none;
 }
 
+#button-container {
+    display: none;
+}
+
 .mppBtn {
     background-color: var(--light-color);
     color: var(--pale-color);
