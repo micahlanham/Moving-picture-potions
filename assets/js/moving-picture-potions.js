@@ -84,15 +84,39 @@ var getMovieGenres = function()
 */    
 }
 
+var randomNumber = function(min, max)
+{
+    var value = Math.floor(Math.random() * (max - min + 1)) + min;
+
+    return value;
+}
+
+var getRandomNonRepeatingNumbers = function(min, max, howMany)
+{
+    var randFound = [];
+    while (randFound.length < howMany)
+    {
+        var value = randomNumber(min, max);
+        if (!randFound.includes(value))
+        {
+            randFound.push(value);
+        }
+    }
+
+    return randFound;
+}
+
 // choose numMoviesToDisplay movies from the returns list
 var loadMoviesToDisplay = function()
 {
     moviesToDisplay = [];
     // eventually have this chose numMoviesToDisplay random movies. For now, just choose the first numMoviesToDisplay.
+    var movieIndices = getRandomNonRepeatingNumbers(0, moviesFound.length-1, numMoviesToDisplay);
     for (var i = 0; i < numMoviesToDisplay; i++)
     {
+
         // the info in moviesFound is in the format /title/tt3554046/ - we just need the tt with the numbers
-        var movieInfo = moviesFound[i];
+        var movieInfo = moviesFound[movieIndices[i]];
         var n = movieInfo.indexOf("tt");
         var movieID = movieInfo.slice(n, movieInfo.length - 1); // subtract 1 - we don't want that final slash
         moviesToDisplay.push(movieID);
