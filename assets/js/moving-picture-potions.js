@@ -215,7 +215,6 @@ var loadDrinksToDisplay = function()
     renderDrinkData();
 }
 
-// add the movies to the DOM
 var renderDrinkData = function()
 {
     drinksContainerEl.style.display = "block";

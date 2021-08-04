@@ -1,90 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fluid Motions</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
-
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Moving Picture Potions</title>
+	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>	
-    <div class="grid-container">
-        <div class="grid-x grid-padding-y grid-padding-x">	
-            <div class="cell small-3"></div>	
-            <div class="cell text-center">
-                <h1 id="top">What would you like to see?</h1>
-            </div>
-            <div class="cell text-center">
-                <select class="button mppBtn text-center" id="genre-list">Select a Genre</select>
-            </div>
-            <div class="cell text-center">
-                <button class="button large mppBtn" id="submit-button">Submit</button>
-            </div>
-        </div>
-        
-        <div class="grid-x grid-padding-x">
-            <div class="cell">
-                <div class="radius bordered shadow card" id="movies-container">
-                    <!-- <img src="./assets/images/negatives-stripes-with-clapperboard-film-reels-tickets-popcorn-wooden-desk.jpg"> -->
-                    <!-- <div class="card-divider">
-                    It's Movie Time!
-                    </div> -->
-                    <div class="card-section">
-                        <h4>Movie 1</h4>
-                        <p>This is a brief description of movie 1. It's just to help you choose between the movie choices.</p>
-                    </div>
-                    <div class="card-section">
-                        <h4>Movie 2</h4>
-                        <p>Will you be able to decide? It's a tough decision, which movie to watch. Of course, if you try all of the drink selections, you quickly will not care which movie you are watching.</p>
-                    </div>
-                    <div class="card-section">
-                        <h4>Movie 3</h4>
-                        <p>Movie 3 would be a great choice because it's a great choice. You couldn't possible make a better choice than movie 3.</p>
-                    </div>
-                    <div class="card-section">
-                        <h4>Movie 4</h4>
-                        <p>Movie 4 is all about figuring out how to change the vertical spacing between the movie choices.</p>
-                    </div>
-                    <div class="card-section">
-                        <h4>Movie 5 has a longer title that will have to wrap around</h4>
-                        <p>Movie 5 is kinda dumb. You don't want this choice. It'd be worse than watching paint dry.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+	<div class="bg-container bg-color">
+		<div class="grid-container">
+			<div class="grid-x grid-padding-y grid-padding-x">	
+				<div class="cell small-3"></div>	
+				<div class="cell text-center page-title">
+					<h1 id="top">What would you like to see?</h1>
+				</div>
+				<div class="cell text-center">
+					<select class="button mppBtn text-center" id="genre-list">Select a Genre</select>
+				</div>
+				<div class="cell text-center">
+					<button class="button large mppBtn" id="submit-button">Submit</button>
+				</div>
+			</div>
+				<div class="grid-x grid-padding-x">
+					<div class="cell">
+						<div class="radius bordered shadow card" id="movies-container">
+							<!-- <img src="./assets/images/negatives-stripes-with-clapperboard-film-reels-tickets-popcorn-wooden-desk.jpg"> -->
+							<!-- <div class="card-divider">
+							It's Movie Time!
+							</div> -->
+							<div class="card-section">
+									<h4>Movie 1</h4>
+									<p>This is a brief description of movie 1. It's just to help you choose between the movie choices.</p>
+							</div>
+							<div class="card-section">
+									<h4>Movie 2</h4>
+									<p>Will you be able to decide? It's a tough decision, which movie to watch. Of course, if you try all of the drink selections, you quickly will not care which movie you are watching.</p>
+							</div>
+							<div class="card-section">
+									<h4>Movie 3</h4>
+									<p>Movie 3 would be a great choice because it's a great choice. You couldn't possible make a better choice than movie 3.</p>
+							</div>
+							<div class="card-section">
+									<h4>Movie 4</h4>
+									<p>Movie 4 is all about figuring out how to change the vertical spacing between the movie choices.</p>
+							</div>
+							<div class="card-section">
+									<h4>Movie 5 has a longer title that will have to wrap around</h4>
+									<p>Movie 5 is kinda dumb. You don't want this choice. It'd be worse than watching paint dry.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="grid-x grid-padding-x">
+					<div class="cell">
+						<div class="radius bordered shadow card" id="drinks-container">
+							<!-- <img src="./assets/images/negatives-stripes-with-clapperboard-film-reels-tickets-popcorn-wooden-desk.jpg"> -->
+							<!-- <div class="card-divider">
+							It's Movie Time!
+							</div> -->
+							<div class="card-section drink-card">
+									<h4>Drink 1</h4>
+							</div>
+							<div class="card-section drink-card">
+									<h4>Drink 2</h4>
+							</div>
+							<div class="card-section drink-card">
+									<h4>Drink 3</h4>
+							</div>
+							<div class="card-section drink-card">
+									<h4>Drink 4</h4>
+							</div>
+							<div class="card-section drink-card">
+									<h4>Drink 5 has a longer title that will have to wrap around</h4>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+	</div>
 
-        <div class="grid-x grid-padding-x">
-            <div class="cell">
-                <div class="radius bordered shadow card" id="drinks-container">
-                    <!-- <img src="./assets/images/negatives-stripes-with-clapperboard-film-reels-tickets-popcorn-wooden-desk.jpg"> -->
-                    <!-- <div class="card-divider">
-                    It's Movie Time!
-                    </div> -->
-                    <div class="card-section drink-card">
-                        <h4>Drink 1</h4>
-                    </div>
-                    <div class="card-section drink-card">
-                        <h4>Drink 2</h4>
-                    </div>
-                    <div class="card-section drink-card">
-                        <h4>Drink 3</h4>
-                    </div>
-                    <div class="card-section drink-card">
-                        <h4>Drink 4</h4>
-                    </div>
-                    <div class="card-section drink-card">
-                        <h4>Drink 5 has a longer title that will have to wrap around</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="cell small-1 text-center">
-        <a class="button large" id="button-container" href="#top">Back to Top</a>
-    </div>
-    <script src="./assets/js/config.js"></script>
-    <script src="./assets/js/moving-picture-potions.js"></script>
+	<div class="cell small-1 text-center">
+		<a class="button large" id="button-container" href="#top">Back to Top</a>
+	</div>
+
+	<script src="./assets/js/config.js"></script>
+	<script src="./assets/js/moving-picture-potions.js"></script>
 </body>
 </html>
