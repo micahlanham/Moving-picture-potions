@@ -99,9 +99,9 @@ var getRandomNonRepeatingNumbers = function(min, max, howMany)
 var loadMoviesToDisplay = function()
 {
     moviesToDisplay = [];
-    // eventually have this chose numMoviesToDisplay random movies. For now, just choose the first numMoviesToDisplay.
-    var movieIndices = getRandomNonRepeatingNumbers(0, moviesFound.length-1, numMoviesToDisplay);
-    for (var i = 0; i < numMoviesToDisplay; i++)
+    var nMoviesToDisplay = Math.min(numMoviesToDisplay, moviesFound.length);
+    var movieIndices = getRandomNonRepeatingNumbers(0, moviesFound.length-1, nMoviesToDisplay);
+    for (var i = 0; i < nMoviesToDisplay; i++)
     {
 
         // the info in moviesFound is in the format /title/tt3554046/ - we just need the tt with the numbers
@@ -149,6 +149,7 @@ var renderMovieData = function()
 var getMovieData = async function()
 {
     movieDetails = [];
+    var nMoviesToDisplay = Math.min(numMoviesToDisplay, moviesToDisplay.length);
 
     for (var i = 0; i < numMoviesToDisplay; i++)
     {
@@ -220,8 +221,16 @@ var renderDrinkData = function()
     drinksContainerEl.style.display = "block";
     // buttonContainerEl.style.display = "block";
 
+
     for (var i = 0; i< drinksContainerEl.children.length; i++) {
-        drinksContainerEl.children[i].getElementsByTagName("h4")[0].textContent = drinksToDisplay[i];
+        if (drinksToDisplay[i])
+        {
+            drinksContainerEl.children[i].getElementsByTagName("h4")[0].textContent = drinksToDisplay[i];
+        }
+        else    
+        {
+            drinksContainerEl.children[i].getElementsByTagName("h4")[0].textContent = "";
+        }
     }
 
     // for (var child = 0, drinkIndex=0; child < drinksContainerEl.children.length; child++)
