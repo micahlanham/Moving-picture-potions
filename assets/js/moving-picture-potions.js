@@ -204,11 +204,12 @@ var renderDrinkData = function()
     // for (var child = 0, drinkIndex=0; child < drinksContainerEl.children.length; child++)
     // {   
     //     var className = drinksContainerEl.children[child].className;
+    //     console.log(className);
     //     if (className === "drink-card")
     //     {
-    //         var drinkData = DrinksToDisplay[drinkIndex];
+    //         var drinkData = drinksToDisplay[drinkIndex];
     //         drinkIndex++;
-    //         drinksContainerEl.children[child].getElementsByTagName("h4")[0].textContent = drinkData.title;
+    //         drinksContainerEl.children[child].getElementsByTagName("h4")[0].textContent = drinkData;
     //         // moviesContainerEl.children[child].getElementsByTagName("p")[0].textContent = movieData.summary;
 
     //     }
@@ -238,7 +239,7 @@ var submitClickHandler = function(event)
     // get the users choice from the genre drop down
     var genreChoice = genreDropDownEl.value;
     var genreText = genreDropDownEl.selectedOptions[0].text.toLowerCase();
-    // getMoviesInGenre(genreChoice);
+    getMoviesInGenre(genreChoice);
     getDrinksByGenre(genreText);
 }
 
