@@ -1,14 +1,3 @@
-// Have the keys as variables just in case we need to switch keys because we've used one too much
-const movieAPIKey = "42a3df40e8msh40b4f189b13b666p169e06jsnd088b0a8350d";
-
-// We probably won't be changing the host, but this will help avoid typos
-const movieAPIHost = "imdb8.p.rapidapi.com";
-
-// again, just trying to prevent typos
-const movieAPISearch = "https://imdb8.p.rapidapi.com/title/";
-
-const numMoviesToDisplay = 5;
-
 var movieGenres = []; // make this global so we only have to fill it once
 var moviesFound = []; // make this global to help use fewer API calls
 var moviesToDisplay = [];
@@ -157,7 +146,7 @@ var renderMovieData = function()
 //     loadMoviesToDisplay();
 // }
 
-var getMovieData = async function(movieIDt)
+var getMovieData = async function()
 {
     movieDetails = [];
 
@@ -186,9 +175,9 @@ var getMovieData = async function(movieIDt)
 
 var getMoviesInGenre = async function(genreChoice)
 {
-    var fetchStr = movieAPISearch + "get-popular-movies-by-genre?genre=%2Fchart%2Fpopular%2Fgenre%2F";
-    var n = genreChoice.lastIndexOf("/");
-    fetchStr += genreChoice.slice(n+1, genreChoice.length);
+    var fetchStr = movieAPISearch + "get-popular-movies-by-genre?genre=" + genreChoice;
+    // var n = genreChoice.lastIndexOf("/");
+    // fetchStr += genreChoice.slice(n+1, genreChoice.length);
     fetch(fetchStr, {
     	"method": "GET",
 	    "headers": {
@@ -211,13 +200,71 @@ var getMoviesInGenre = async function(genreChoice)
 
 }
 
+var drinksFound = [];
+var drinksToDisplay = [];
+var drinksContainerEl = document.querySelector("#drinks-container");
+
+var loadDrinksToDisplay = function()
+{
+    drinksToDisplay = [];
+    
+    for (var i = 0; i < numDrinksDisplay; i++) {
+        drinksToDisplay.push(drinksFound[i].strDrink);
+    }
+
+    renderDrinkData();
+}
+
+// add the movies to the DOM
+var renderDrinkData = function()
+{
+    drinksContainerEl.style.display = "block";
+    // buttonContainerEl.style.display = "block";
+
+    for (var i = 0; i< drinksContainerEl.children.length; i++) {
+        drinksContainerEl.children[i].getElementsByTagName("h4")[0].textContent = drinksToDisplay[i];
+    }
+
+    // for (var child = 0, drinkIndex=0; child < drinksContainerEl.children.length; child++)
+    // {   
+    //     var className = drinksContainerEl.children[child].className;
+    //     console.log(className);
+    //     if (className === "drink-card")
+    //     {
+    //         var drinkData = drinksToDisplay[drinkIndex];
+    //         drinkIndex++;
+    //         drinksContainerEl.children[child].getElementsByTagName("h4")[0].textContent = drinkData;
+    //         // moviesContainerEl.children[child].getElementsByTagName("p")[0].textContent = movieData.summary;
+
+    //     }
+    // }    
+}
+
+var getDrinksByGenre = function (genreText) {
+    var fetchStr = drinkAPIsearch + drinksByGenre[genreText];
+    fetch(fetchStr, {
+        "method": "GET",
+    })
+    .then(response => {
+        return response.json();
+    })
+    .then(response => {
+        drinksFound = response.drinks;
+        loadDrinksToDisplay();
+    })
+    .catch(err => {
+        console.error(err);
+    });
+}
 
 
 var submitClickHandler = function(event)
 {
     // get the users choice from the genre drop down
     var genreChoice = genreDropDownEl.value;
+    var genreText = genreDropDownEl.selectedOptions[0].text.toLowerCase();
     getMoviesInGenre(genreChoice);
+    getDrinksByGenre(genreText);
 }
 
 submitButtonEl.addEventListener("click", submitClickHandler);

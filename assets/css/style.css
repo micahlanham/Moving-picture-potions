@@ -25,6 +25,10 @@ ul {
     display: none;
 }
 
+#drinks-container {
+    display: none;
+}
+
 #button-container {
     display: none;
 }
