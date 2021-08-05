@@ -2,8 +2,10 @@ var movieGenres = []; // make this global so we only have to fill it once
 var moviesFound = []; // make this global to help use fewer API calls
 var moviesToDisplay = [];
 var movieDetails = []; // { title: "title", summary: "summary"}
+var lastSearchedGenre = "";
 
 var submitButtonEl = document.querySelector("#submit-button");
+var lastSearchedButtonEl = document.querySelector("#last-searched-button");
 var genreDropDownEl = document.querySelector("#genre-list");
 var moviesContainerEl = document.querySelector("#movies-container");
 var buttonContainerEl = document.querySelector("#button-container");
@@ -267,18 +269,80 @@ var getDrinksByGenre = async function (genreText) {
     });
 }
 
+var convertWordsToUpperCase = function(movieGenre, divider)
+{
+    if (movieGenre && movieGenre.length > 0 && divider && divider.length > 0)
+    {
+        const words = movieGenre.split(divider);
+        
+        for (let i = 0; i < words.length; i++) {
+            words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+        }
+        
+        words.join(divider);
+
+        return words[0];
+    }
+    else
+    {
+        return "";
+    }    
+}
+
+var convertGenreToUpperCase = function(movieGenre)
+{
+    var dashes = "";
+
+    if (movieGenre && movieGenre.length > 0)
+    {
+        var spaces = convertWordsToUpperCase(movieGenre, " ");
+        dashes = convertWordsToUpperCase(spaces, "-");
+    }
+
+    return dashes;
+}
+
+var saveGenreChoice = function()
+{
+    if (!lastSearchedGenre)
+    {
+        lastSearchedGenre = "";
+    }
+    localStorage.setItem("lastSearchedGenre", JSON.stringify(lastSearchedGenre));
+    document.querySelector("#last-searched-genre").textContent = convertGenreToUpperCase(lastSearchedGenre);
+}
+
+var loadLastGenreChoice = function()
+{
+    lastSearchedGenre = JSON.parse(localStorage.getItem("lastSearchedGenre"));
+    if (!lastSearchedGenre)
+    {
+        lastSearchGenre = "";
+    }
+    document.querySelector("#last-searched-genre").textContent = convertGenreToUpperCase(lastSearchedGenre);
+}
 
 var submitClickHandler = function(event)
 {
     // get the users choice from the genre drop down
-    var genreChoice = genreDropDownEl.value;
-    var genreText = genreDropDownEl.selectedOptions[0].text.toLowerCase();
-    getMoviesInGenre(genreChoice);
-    getDrinksByGenre(genreText);
+    lastSearchedGenre = genreDropDownEl.selectedOptions[0].text.toLowerCase();
+    getMoviesInGenre(lastSearchedGenre);
+    getDrinksByGenre(lastSearchedGenre);
+    saveGenreChoice();
+}
+
+var submitClickLastSearchedHandler = function(event)
+{
+    if (lastSearchedGenre && lastSearchedGenre.length > 0)
+    {
+        genreChoice = lastSearchedGenre.toLowerCase();
+        getMoviesInGenre(genreChoice);
+        getDrinksByGenre(genreChoice);
+    }
 }
 
 submitButtonEl.addEventListener("click", submitClickHandler);
-
+lastSearchedButtonEl.addEventListener("click", submitClickLastSearchedHandler);
 
 getMovieGenres();
-
+loadLastGenreChoice();
