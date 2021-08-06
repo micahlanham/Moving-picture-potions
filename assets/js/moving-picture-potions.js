@@ -212,9 +212,13 @@ var loadDrinksToDisplay = function()
     drinksToDisplay = [];
 
     var nDrinksDisplay = Math.min(numDrinksDisplay, drinksFound.length);
+
+    var drinkIndices = getRandomNonRepeatingNumbers(0, drinksFound.length-1, nDrinksDisplay);
+
     
     for (var i = 0; i < nDrinksDisplay; i++) {
-        drinksToDisplay.push(drinksFound[i].strDrink);
+
+        drinksToDisplay.push(drinksFound[drinkIndices[i]].strDrink);
     }
 
     renderDrinkData();
