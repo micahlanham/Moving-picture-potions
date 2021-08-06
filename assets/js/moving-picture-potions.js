@@ -153,7 +153,7 @@ var getMovieData = async function()
     movieDetails = [];
     var nMoviesToDisplay = Math.min(numMoviesToDisplay, moviesToDisplay.length);
 
-    for (var i = 0; i < nMoviesToDisplay; i++)
+    for (var i = 0; i < numMoviesToDisplay; i++)
     {
         movieID = moviesToDisplay[i];
 
@@ -219,6 +219,7 @@ var loadDrinksToDisplay = function()
     for (var i = 0; i < nDrinksDisplay; i++) {
 
         drinksToDisplay.push(drinksFound[drinkIndices[i]].strDrink);
+
     }
 
     renderDrinkData();
@@ -256,7 +257,7 @@ var renderDrinkData = function()
     // }    
 }
 
-var getDrinksByGenre = async function (genreText) {
+var getDrinksByGenre = function (genreText) {
     var fetchStr = drinkAPIsearch + drinksByGenre[genreText];
     fetch(fetchStr, {
         "method": "GET",

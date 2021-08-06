@@ -7,7 +7,7 @@
 }
 
 .bg-container {
-    background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+    background-image: linear-gradient(to right bottom, #081d3d, #3d235a, #7b1661, #b3004d, #d52222);
 }
 
 .bg-color {
@@ -16,29 +16,85 @@
     overflow: auto;
 }
 
+/* Home Page */
 .app-title h1 {
     font-family: 'Fredoka One', cursive;
-    font-size: 1.7rem;
+    font-size: 3rem;
     color: white;
 }
 
+#potions {
+    color: rgb(238, 57, 51);
+}
+
+.click {
+    padding: 1rem;
+    width: 10rem;
+}
+
+.bttn {
+    text-align: center;
+    cursor: pointer;
+    font-size: 20px;
+    letter-spacing: 4px;
+    position: relative;
+    background-color: #16a085;
+    border: none;
+    color: #fff;
+    text-align: center;
+    transition-duration: 0.4s;
+    overflow: hidden;
+    box-shadow: 0 5px 15px #193047;
+    border-radius: 4px;
+}
+
+.bttn:hover {
+    background: #fff;
+    box-shadow: 0px 2px 10px 5px #1abc9c;
+    color: #000;
+}
+
+.bttn:after {
+    content: "";
+    background: #1abc9c;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+}
+
+.bttn:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}
+  
+.bttn:focus { outline:0; }
+
 .page-title h1 {
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.5rem;
+    font-family: 'Fredoka One', cursive;
+    font-size: 2.3rem;
     color: white;
 }
 
 .description-text li {
     font-family: 'Roboto', sans-serif;
-    font-size: 1rem;
+    font-size: 1.3rem;
     color: white;
     list-style-type: none;
 }
 
-.app-name {
-    font-family:fantasy;
-    color: var(--dark-color);
-    font-size: 1.5em;
+#genre {
+    color: rgb(62, 141, 194);
+}
+
+#submit {
+    color: rgb(52, 192, 185);
 }
 
 ul {
@@ -47,14 +103,45 @@ ul {
 
 #movies-container {
     display: none;
+    border-radius: .8rem;
+    background-image: linear-gradient(to right, #1f3b66, #2d5182, #3b689e, #4881bc, #559ada);
 }
+
+.movie-title h3 {
+    font-family: 'Fredoka One', cursive;
+    color: white;
+    text-align: center;
+}
+
+.movie-card h4 {
+    color: white;
+}
+
+.movie-card p {
+    color: white;
+}
+
 
 #drinks-container {
     display: none;
+    border-radius: .8rem;
+    background-image: linear-gradient(to right, #1f3b66, #2d5182, #3b689e, #4881bc, #559ada);
+}
+
+.drink-title h3 {
+    font-family: 'Fredoka One', cursive;
+    color: white;
+    text-align: center;
+}
+
+.drink-card h4 {
+    color: white;
+    text-align: center;
 }
 
 #button-container {
     display: none;
+    margin: 0;
 }
 
 .mppBtn {
