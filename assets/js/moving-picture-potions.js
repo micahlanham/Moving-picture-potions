@@ -211,7 +211,6 @@ var loadDrinksToDisplay = function()
 {
     drinksToDisplay = [];
 
-
     var nDrinksDisplay = Math.min(numDrinksDisplay, drinksFound.length);
 
     var drinkIndices = getRandomNonRepeatingNumbers(0, drinksFound.length-1, nDrinksDisplay);
