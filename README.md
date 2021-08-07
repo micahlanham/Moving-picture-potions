@@ -54,7 +54,7 @@ As an indecisive movie watcher I want to choose a movie genre me and be shown 5 
 <a id="wireframe"></a>
 ## Wire Frame
 
-![Moving Picture Potions Wire Frame](assets\images\MPP-wireframe.png)
+![Moving Picture Potions Wire Frame](./assets/images/MPP-wireframe.png)
 
 --- 
 
@@ -86,7 +86,7 @@ As an indecisive movie watcher I want to choose a movie genre me and be shown 5 
 <a id="webImage"></a>
 ## Moving Picture Potions Screenshot
 
-![Moving Picture Potions](assets\images\MPP-app-screenshot.png)
+![Moving Picture Potions](./assets/images/MPP-app-screenshot.png)
 
 
 <a id="projectURL"></a>
