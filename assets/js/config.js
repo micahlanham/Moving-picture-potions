@@ -1,5 +1,10 @@
 // Have the keys as variables just in case we need to switch keys because we've used one too much
-const movieAPIKey = "0922a66a50msh354f04aeda5a582p182aeejsn76317a5072f3";
+// const movieAPIKey = "0922a66a50msh354f04aeda5a582p182aeejsn76317a5072f3";
+
+// from Brenda's bmolina5@gmail.com account
+const movieAPIKey = "f550f50589msh02e99d90234a2fdp1dcf89jsnd68a620e915b"
+
+
 
 // We probably won't be changing the host, but this will help avoid typos
 const movieAPIHost = "imdb8.p.rapidapi.com";
