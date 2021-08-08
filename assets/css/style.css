@@ -107,20 +107,9 @@ ul {
     background-image: linear-gradient(to right, #1f3b66, #2d5182, #3b689e, #4881bc, #559ada);
 }
 
-.movie-title h3 {
-    font-family: 'Fredoka One', cursive;
-    color: white;
-    text-align: center;
-}
-
-.movie-card h4 {
+.movie-titles {
     color: white;
 }
-
-.movie-card p {
-    color: white;
-}
-
 
 #drinks-container {
     display: none;
