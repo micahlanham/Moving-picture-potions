@@ -123,7 +123,7 @@ var renderMovieData = function()
     for (var child = 0, movieIndex=0; child < moviesContainerEl.children.length; child++)
     {   
         var className = moviesContainerEl.children[child].className;
-        if (className === "card-section")
+        if (className.includes("card-section")) // bjj 20210806 1904
         {
             var movieData = movieDetails[movieIndex];
             movieIndex++;
